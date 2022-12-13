@@ -84,7 +84,8 @@
   * [Custom Parameters](#custom-parameters)
   * [Custom IP Configuration](#custom-ip-configuration) 
     * [Custom Station (client) Static IP Configuration](#custom-station-client-static-ip-configuration)
-  * [Custom HTML, CSS, Javascript](#custom-html-css-javascript) 
+  * [Custom HTML, CSS, Javascript](#custom-html-css-javascript)
+* [How to connect ENC28J60 to ESP32](#How-to-connect-ENC28J60-to-ESP32)
 * [Examples](#examples)
   * [Async_ConfigOnSwitch](examples/Async_ConfigOnSwitch)
   * [Async_ConfigOnSwitchFS](examples/Async_ConfigOnSwitchFS)
@@ -147,7 +148,13 @@ To appreciate the power of the [ESPAsyncWebServer](https://github.com/me-no-dev/
 
 This [**AsyncESP32_ENC_Manager** library](https://github.com/khoih-prog/AsyncESP32_ENC_Manager) currently supports these following boards:
 
- 1. **ESP32_DEV with ENC28J60 boards** using `LwIP ENC28J60 Ethernet`
+ 1. **ESP32_DEV boards** using `LwIP ENC28J60 Ethernet`
+ 
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/AsyncESP32_ENC_Manager/raw/main/Images/ENC28J60.png">
+</p>
+ 
  
 ---
 ---
@@ -1785,6 +1792,38 @@ Just add the bit you want added as the last parameter to the custom parameter co
 ```cpp
 ESPAsync_EMParameter custom_mqtt_server("server", "mqtt server", "iot.eclipse", 40, " readonly");
 ```
+
+
+---
+---
+
+#### How to connect ENC28J60 to ESP32
+
+You can change the `INT` pin to another one. Default is `GPIO4`
+
+```cpp
+// Must connect INT to GPIOxx or not working
+#define INT_GPIO            4
+```
+
+---
+
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/AsyncESP32_ENC_Manager/raw/main/Images/ENC28J60.png">
+</p>
+
+
+
+|ENC28J60|<--->|ESP32|
+|:-:|:-:|:-:|
+|MOSI|<--->|GPIO23|
+|MISO|<--->|GPIO19|
+|SCK|<--->|GPIO18|
+|SS|<--->|GPIO5|
+|INT|<--->|GPIO4|
+|GND|<--->|GND|
+|3.3V|<--->|3.3V|
 
 ---
 ---
